@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'optparse'
+require 'bundler/setup'
+require 'static_ruby'
+
+StaticRuby::Paths.reset!
+StaticRuby::Paths.root = Dir.pwd
+
+options = {}
+
+OptionParser.new do |parser|
+  parser.banner = 'Usage: bin/serve [options]'
+  parser.on('--port PORT', Integer, 'Port to bind (default: 4000)') { |port| options[:port] = port }
+  parser.on('--build PATH', 'Build directory to serve') { |path| options[:build] = File.expand_path(path) }
+  parser.on('--docs PATH', 'Markdown directory (for builds)') { |path| options[:docs] = File.expand_path(path) }
+  parser.on('--menu PATH', 'Menu configuration path') { |path| options[:menu] = File.expand_path(path) }
+  parser.on('--assets PATH', 'Assets directory') { |path| options[:assets] = File.expand_path(path) }
+  parser.on('--[no-]auto-build', 'Build the site before serving (default: true)') { |flag| options[:auto_build] = flag }
+  parser.on('--[no-]watch', 'Rebuild automatically when sources change (default: true)') { |flag| options[:watch] = flag }
+  parser.on('--interval SECONDS', Float, 'Polling interval for watching changes (default: 1.0)') { |seconds| options[:interval] = seconds }
+end.parse!
+
+StaticRuby::Server.start(options)

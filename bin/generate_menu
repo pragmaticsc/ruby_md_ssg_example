@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'optparse'
+require 'bundler/setup'
+require 'static_ruby'
+
+StaticRuby::Paths.reset!
+StaticRuby::Paths.root = Dir.pwd
+
+options = {
+  docs: StaticRuby::Paths.docs_dir,
+  menu: StaticRuby::Paths.menu_config
+}
+
+OptionParser.new do |parser|
+  parser.banner = 'Usage: bin/generate_menu [options]'
+  parser.on('--docs PATH', 'Directory containing markdown docs') { |path| options[:docs] = File.expand_path(path) }
+  parser.on('--menu PATH', 'Menu YAML output path') { |path| options[:menu] = File.expand_path(path) }
+end.parse!
+
+generator = StaticRuby::MenuGenerator.new(docs_dir: options[:docs], menu_path: options[:menu])
+output = generator.generate
+
+puts "Menu configuration written to #{output}"

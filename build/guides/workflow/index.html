@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recommended Workflow · Static Ruby</title>
+    
+    <link rel="stylesheet" href="/assets/style.css">
+    <script defer="" src="/assets/app.js"></script>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="layout__sidebar">
+        <header class="layout__header">
+          <h1>Static Ruby</h1>
+          <p>Markdown to static site with minimal tooling.</p>
+        </header>
+        <nav class="layout__menu">
+          
+            <section class="menu-section">
+              <h2>Home</h2>
+              <ul>
+                
+                  <li>
+                    <a href="/">Welcome to Static Ruby</a>
+                  </li>
+                
+              </ul>
+            </section>
+          
+            <section class="menu-section">
+              <h2>Ideas</h2>
+              <ul>
+                
+                  <li>
+                    <a href="/ideas/government">Civic Technology Ideas</a>
+                  </li>
+                
+              </ul>
+            </section>
+          
+            <section class="menu-section">
+              <h2>Blog</h2>
+              <ul>
+                
+                  <li>
+                    <a href="/blog/launch">Static Ruby Launch Notes</a>
+                  </li>
+                
+              </ul>
+            </section>
+          
+            <section class="menu-section">
+              <h2>Guides</h2>
+              <ul>
+                
+                  <li>
+                    <a href="/guides/setup">Getting Started</a>
+                  </li>
+                
+                  <li>
+                    <a href="/guides/workflow">Recommended Workflow</a>
+                  </li>
+                
+              </ul>
+            </section>
+          
+        </nav>
+      </aside>
+      <main class="layout__content">
+        <article>
+          <h1 id="recommended-workflow">Recommended Workflow</h1>
+
+<ul>
+  <li>Write new content in <code>docs/</code> using markdown headings to outline the story.</li>
+  <li>Regenerate the menu with <code>bundle exec ruby exe/static_ruby menu</code> so the navigation picks up new pages.</li>
+  <li>Rebuild the site with <code>bundle exec ruby exe/static_ruby build</code> and review the output before opening a pull request.</li>
+</ul>
+
+<p>Keep each page focused on a single topic and prefer relative links when referencing peer documents.</p>
+
+        </article>
+      </main>
+    </div>
+  
+
+</body></html>

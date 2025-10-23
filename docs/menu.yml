@@ -1,0 +1,20 @@
+---
+sections:
+- title: Home
+  links:
+  - label: Welcome to Static Ruby
+    route: "/"
+- title: Ideas
+  links:
+  - label: Civic Technology Ideas
+    route: "/ideas/government"
+- title: Blog
+  links:
+  - label: Static Ruby Launch Notes
+    route: "/blog/launch"
+- title: Guides
+  links:
+  - label: Getting Started
+    route: "/guides/setup"
+  - label: Recommended Workflow
+    route: "/guides/workflow"

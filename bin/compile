@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'optparse'
+require 'bundler/setup'
+require 'static_ruby'
+
+StaticRuby::Paths.reset!
+StaticRuby::Paths.root = Dir.pwd
+
+options = {
+  docs: StaticRuby::Paths.docs_dir,
+  build: StaticRuby::Paths.build_dir,
+  assets: StaticRuby::Paths.assets_dir,
+  menu: StaticRuby::Paths.menu_config
+}
+
+OptionParser.new do |parser|
+  parser.banner = 'Usage: bin/compile [options]'
+  parser.on('--docs PATH', 'Directory containing markdown docs') { |path| options[:docs] = File.expand_path(path) }
+  parser.on('--build PATH', 'Build output directory') { |path| options[:build] = File.expand_path(path) }
+  parser.on('--assets PATH', 'Assets directory') { |path| options[:assets] = File.expand_path(path) }
+  parser.on('--menu PATH', 'Menu configuration path') { |path| options[:menu] = File.expand_path(path) }
+end.parse!
+
+compiler = StaticRuby::Compiler.new(
+  docs_dir: options[:docs],
+  build_dir: options[:build],
+  assets_dir: options[:assets],
+  menu_path: options[:menu]
+)
+
+compiler.compile
+
+puts "Site compiled to #{options[:build]}"
