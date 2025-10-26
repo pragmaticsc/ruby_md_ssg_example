@@ -1,4 +1,4 @@
-name: Deploy Static Ruby Site
+name: Deploy Ruby MD SSG Site
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: static-ruby-pages
+  group: ruby-md-ssg-pages
   cancel-in-progress: true
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build site
-        run: bundle exec static_ruby build
+        run: bundle exec ruby_md_ssg build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

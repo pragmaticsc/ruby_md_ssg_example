@@ -3,16 +3,17 @@
 
 require 'optparse'
 require 'bundler/setup'
-require 'static_ruby'
+require 'ruby_md_ssg'
 
-StaticRuby::Paths.reset!
-StaticRuby::Paths.root = Dir.pwd
+RubyMdSsg::Paths.reset!
+RubyMdSsg::Paths.root = Dir.pwd
 
 options = {
-  docs: StaticRuby::Paths.docs_dir,
-  build: StaticRuby::Paths.build_dir,
-  assets: StaticRuby::Paths.assets_dir,
-  menu: StaticRuby::Paths.menu_config
+  docs: RubyMdSsg::Paths.docs_dir,
+  build: RubyMdSsg::Paths.build_dir,
+  assets: RubyMdSsg::Paths.assets_dir,
+  menu: RubyMdSsg::Paths.menu_config,
+  base_url: ENV['RUBY_MD_SSG_BASE_URL']
 }
 
 OptionParser.new do |parser|
@@ -21,13 +22,15 @@ OptionParser.new do |parser|
   parser.on('--build PATH', 'Build output directory') { |path| options[:build] = File.expand_path(path) }
   parser.on('--assets PATH', 'Assets directory') { |path| options[:assets] = File.expand_path(path) }
   parser.on('--menu PATH', 'Menu configuration path') { |path| options[:menu] = File.expand_path(path) }
+  parser.on('--base-url URL', 'Base URL for sitemap entries') { |url| options[:base_url] = url }
 end.parse!
 
-compiler = StaticRuby::Compiler.new(
+compiler = RubyMdSsg::Compiler.new(
   docs_dir: options[:docs],
   build_dir: options[:build],
   assets_dir: options[:assets],
-  menu_path: options[:menu]
+  menu_path: options[:menu],
+  base_url: options[:base_url]
 )
 
 compiler.compile

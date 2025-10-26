@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-exec('bundle', 'exec', 'static_ruby', 'build')
+exec('bundle', 'exec', 'ruby_md_ssg', 'build')

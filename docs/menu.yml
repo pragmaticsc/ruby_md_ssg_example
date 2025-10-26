@@ -2,7 +2,7 @@
 sections:
 - title: Home
   links:
-  - label: Welcome to Static Ruby
+  - label: Welcome to Ruby MD SSG
     route: "/"
 - title: Ideas
   links:
@@ -10,7 +10,7 @@ sections:
     route: "/ideas/government"
 - title: Blog
   links:
-  - label: Static Ruby Launch Notes
+  - label: Ruby MD SSG Launch Notes
     route: "/blog/launch"
 - title: Guides
   links:

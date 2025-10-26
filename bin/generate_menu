@@ -3,14 +3,14 @@
 
 require 'optparse'
 require 'bundler/setup'
-require 'static_ruby'
+require 'ruby_md_ssg'
 
-StaticRuby::Paths.reset!
-StaticRuby::Paths.root = Dir.pwd
+RubyMdSsg::Paths.reset!
+RubyMdSsg::Paths.root = Dir.pwd
 
 options = {
-  docs: StaticRuby::Paths.docs_dir,
-  menu: StaticRuby::Paths.menu_config
+  docs: RubyMdSsg::Paths.docs_dir,
+  menu: RubyMdSsg::Paths.menu_config
 }
 
 OptionParser.new do |parser|
@@ -19,7 +19,7 @@ OptionParser.new do |parser|
   parser.on('--menu PATH', 'Menu YAML output path') { |path| options[:menu] = File.expand_path(path) }
 end.parse!
 
-generator = StaticRuby::MenuGenerator.new(docs_dir: options[:docs], menu_path: options[:menu])
+generator = RubyMdSsg::MenuGenerator.new(docs_dir: options[:docs], menu_path: options[:menu])
 output = generator.generate
 
 puts "Menu configuration written to #{output}"

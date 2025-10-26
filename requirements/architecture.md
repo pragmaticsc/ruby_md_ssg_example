@@ -1,7 +1,7 @@
-# Static Ruby
+# Ruby MD SSG
 
 ## Overview
-Static Ruby is a minimal Static Site Generator based off of markdown files.
+Ruby MD SSG is a minimal static site generator based off of markdown files.
 
 ## Dependencies
 This project should have minimal dependencies. No package.json or javascript package manager should be necessary.

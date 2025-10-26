@@ -3,10 +3,10 @@
 
 require 'optparse'
 require 'bundler/setup'
-require 'static_ruby'
+require 'ruby_md_ssg'
 
-StaticRuby::Paths.reset!
-StaticRuby::Paths.root = Dir.pwd
+RubyMdSsg::Paths.reset!
+RubyMdSsg::Paths.root = Dir.pwd
 
 options = {}
 
@@ -17,9 +17,16 @@ OptionParser.new do |parser|
   parser.on('--docs PATH', 'Markdown directory (for builds)') { |path| options[:docs] = File.expand_path(path) }
   parser.on('--menu PATH', 'Menu configuration path') { |path| options[:menu] = File.expand_path(path) }
   parser.on('--assets PATH', 'Assets directory') { |path| options[:assets] = File.expand_path(path) }
+  parser.on('--base-url URL', 'Base URL for sitemap entries') { |url| options[:base_url] = url }
   parser.on('--[no-]auto-build', 'Build the site before serving (default: true)') { |flag| options[:auto_build] = flag }
   parser.on('--[no-]watch', 'Rebuild automatically when sources change (default: true)') { |flag| options[:watch] = flag }
   parser.on('--interval SECONDS', Float, 'Polling interval for watching changes (default: 1.0)') { |seconds| options[:interval] = seconds }
 end.parse!
 
-StaticRuby::Server.start(options)
+options[:docs] ||= RubyMdSsg::Paths.docs_dir
+options[:build] ||= RubyMdSsg::Paths.build_dir
+options[:menu] ||= RubyMdSsg::Paths.menu_config
+options[:assets] ||= RubyMdSsg::Paths.assets_dir
+options[:base_url] ||= ENV['RUBY_MD_SSG_BASE_URL']
+
+RubyMdSsg::Server.start(options)
