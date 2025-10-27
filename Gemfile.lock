@@ -1,11 +1,3 @@
-PATH
-  remote: ../ruby-md-ssg
-  specs:
-    ruby-md-ssg (0.1.0)
-      kramdown (~> 2.4)
-      nokogiri (~> 1.16)
-      webrick (~> 1.8)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -41,6 +33,10 @@ GEM
     rubocop-ast (1.47.1)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
+    ruby-md-ssg (0.1.0)
+      kramdown (~> 2.4)
+      nokogiri (~> 1.16)
+      webrick (~> 1.8)
     ruby-progressbar (1.13.0)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
@@ -53,7 +49,7 @@ PLATFORMS
 DEPENDENCIES
   rake (~> 13.0)
   rubocop
-  ruby-md-ssg!
+  ruby-md-ssg
 
 BUNDLED WITH
    2.5.11

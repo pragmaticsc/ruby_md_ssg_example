@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'ruby-md-ssg', path: '../ruby-md-ssg'
+gem 'ruby-md-ssg'
+# gem 'ruby-md-ssg', path: '../ruby-md-ssg'
 
 group :development do
   gem 'rake', '~> 13.0'
