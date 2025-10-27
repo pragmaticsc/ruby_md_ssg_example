@@ -18,6 +18,7 @@ OptionParser.new do |parser|
   parser.on('--menu PATH', 'Menu configuration path') { |path| options[:menu] = File.expand_path(path) }
   parser.on('--assets PATH', 'Assets directory') { |path| options[:assets] = File.expand_path(path) }
   parser.on('--base-url URL', 'Base URL for sitemap entries') { |url| options[:base_url] = url }
+  parser.on('--base-path PATH', 'Base path prefix for assets and routes') { |path| options[:base_path] = path }
   parser.on('--[no-]auto-build', 'Build the site before serving (default: true)') { |flag| options[:auto_build] = flag }
   parser.on('--[no-]watch', 'Rebuild automatically when sources change (default: true)') { |flag| options[:watch] = flag }
   parser.on('--interval SECONDS', Float, 'Polling interval for watching changes (default: 1.0)') { |seconds| options[:interval] = seconds }
@@ -28,5 +29,6 @@ options[:build] ||= RubyMdSsg::Paths.build_dir
 options[:menu] ||= RubyMdSsg::Paths.menu_config
 options[:assets] ||= RubyMdSsg::Paths.assets_dir
 options[:base_url] ||= ENV['RUBY_MD_SSG_BASE_URL']
+options[:base_path] ||= ENV['RUBY_MD_SSG_BASE_PATH']
 
 RubyMdSsg::Server.start(options)

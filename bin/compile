@@ -13,7 +13,8 @@ options = {
   build: RubyMdSsg::Paths.build_dir,
   assets: RubyMdSsg::Paths.assets_dir,
   menu: RubyMdSsg::Paths.menu_config,
-  base_url: ENV['RUBY_MD_SSG_BASE_URL']
+  base_url: ENV['RUBY_MD_SSG_BASE_URL'],
+  base_path: ENV['RUBY_MD_SSG_BASE_PATH']
 }
 
 OptionParser.new do |parser|
@@ -23,6 +24,7 @@ OptionParser.new do |parser|
   parser.on('--assets PATH', 'Assets directory') { |path| options[:assets] = File.expand_path(path) }
   parser.on('--menu PATH', 'Menu configuration path') { |path| options[:menu] = File.expand_path(path) }
   parser.on('--base-url URL', 'Base URL for sitemap entries') { |url| options[:base_url] = url }
+  parser.on('--base-path PATH', 'Base path prefix for assets and routes') { |path| options[:base_path] = path }
 end.parse!
 
 compiler = RubyMdSsg::Compiler.new(
@@ -30,7 +32,8 @@ compiler = RubyMdSsg::Compiler.new(
   build_dir: options[:build],
   assets_dir: options[:assets],
   menu_path: options[:menu],
-  base_url: options[:base_url]
+  base_url: options[:base_url],
+  base_path: options[:base_path]
 )
 
 compiler.compile

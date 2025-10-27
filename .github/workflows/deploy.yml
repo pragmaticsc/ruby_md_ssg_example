@@ -18,6 +18,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      RUBY_MD_SSG_BASE_PATH: "/ruby_md_ssg_example"
+      RUBY_MD_SSG_BASE_URL: "https://pragmaticsc.github.io/ruby_md_ssg_example"
 
     steps:
       - name: Check out repository
