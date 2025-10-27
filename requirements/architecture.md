@@ -17,6 +17,7 @@ The template will be two columns. The left column will have a heading and subtex
 
 ## Build
 There is a `bin/` directory for executables. These executables can be bash or ruby. There should be an executable that compiles the site to a `build/` directory (after purging it). There should be an executable for running a webserver of the `build/` directory.
+The build step should also emit a `sitemap.xml` file in `build/`.
 
 ## Styling
 All of the styles for this project should be in a single stylesheet.
